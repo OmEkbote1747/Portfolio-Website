@@ -1,0 +1,133 @@
+{% load static %}
+<section id="hero"
+         class="min-h-screen flex items-center bg-slate-950">
+
+    <div class="max-w-7xl mx-auto px-6 py-20">
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+            <!-- Left Section -->
+
+            <div>
+
+                <p class="text-cyan-400 text-lg font-semibold tracking-wider uppercase mb-4">
+                    Welcome to my portfolio
+                </p>
+
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight">
+
+                    Hi, I'm
+
+                    <span class="text-cyan-400">
+                        Om Ekbote
+                    </span>
+
+                </h1>
+
+                <h2 class="mt-6 text-2xl md:text-3xl font-semibold text-slate-300">
+
+                    Computer Engineering Student
+
+                </h2>
+
+                <p class="mt-8 text-lg leading-8 text-slate-400 max-w-2xl">
+
+                    Passionate about building modern web applications with
+                    Django and Python while exploring Artificial Intelligence,
+                    and scalable software solutions.
+
+                </p>
+
+                <div class="mt-10 flex flex-wrap gap-4">
+
+                    <a href="#projects"
+                       class="px-8 py-4 rounded-lg bg-cyan-500 text-slate-950 font-semibold hover:bg-cyan-400 transition">
+
+                        View Projects
+
+                    </a>
+
+                    <a href="/media/resume.pdf"
+                       class="px-8 py-4 rounded-lg border border-cyan-500 text-cyan-400 hover:bg-cyan-500 hover:text-slate-950 transition">
+
+                        Download Resume
+
+                    </a>
+
+                </div>
+
+                <!-- Quick Stats -->
+
+                <div class="grid grid-cols-3 gap-8 mt-16">
+
+                    <div>
+
+                        <h3 class="text-4xl font-bold text-cyan-400">
+
+                            5+
+
+                        </h3>
+
+                        <p class="text-slate-400">
+
+                            Projects
+
+                        </p>
+
+                    </div>
+
+                    <div>
+
+                        <h3 class="text-4xl font-bold text-cyan-400">
+
+                            8+
+
+                        </h3>
+
+                        <p class="text-slate-400">
+
+                            Technologies
+
+                        </p>
+
+                    </div>
+
+                    <div>
+
+                        <h3 class="text-4xl font-bold text-cyan-400">
+
+                            5+
+
+                        </h3>
+
+                        <p class="text-slate-400">
+
+                            Certificates
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Right Section -->
+
+            <div class="flex justify-center">
+
+                <div class="w-80 h-80 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-cyan-500 shadow-2xl">
+
+                    <img src="{% static 'images/profile.jpg' %}"
+                         alt="Om Ekbote"
+                         class="w-full h-full object-cover">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

@@ -1,0 +1,5 @@
+@import "tailwindcss";
+
+/* Tell Tailwind where to look for class names */
+@source "../../templates/**/*.html";
+@source "../../website/**/*.py";
