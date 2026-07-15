@@ -1,20 +1,161 @@
 {% extends "base.html" %}
 
 {% block title %}
-Project-Detail | Om Ekbote
+{{ project.title }} | Om Ekbote
 {% endblock %}
 
 {% block content %}
 
-<section class="max-w-7xl mx-auto px-6 py-20">
+<section class="bg-slate-950 min-h-screen py-20">
 
-    <h1 class="text-5xl font-bold text-cyan-400">
-        About Project
-    </h1>
+    <div class="max-w-6xl mx-auto px-6">
 
-    <p class="mt-6 text-slate-300">
-        This page will contain information about project.
-    </p>
+        <!-- Back Button -->
+
+        <a
+            href="{% url 'projects' %}"
+            class="inline-flex items-center text-cyan-400 hover:text-cyan-300 transition">
+
+            ← Back to Projects
+
+        </a>
+
+        <!-- Project Banner -->
+
+        <div class="mt-8">
+
+            {% if project.image %}
+
+            <img
+                src="{{ project.image.url }}"
+                alt="{{ project.title }}"
+                class="w-full rounded-3xl object-cover border border-slate-800 shadow-2xl">
+
+            {% endif %}
+
+        </div>
+
+        <!-- Title -->
+
+        <div class="mt-10">
+
+            <span
+                class="inline-block bg-cyan-500/10 text-cyan-400 px-4 py-2 rounded-full text-sm">
+
+                {{ project.status }}
+
+            </span>
+
+            {% if project.featured %}
+
+            <span
+                class="inline-block bg-emerald-500/10 text-emerald-400 px-4 py-2 rounded-full text-sm ml-2">
+
+                Featured
+
+            </span>
+
+            {% endif %}
+
+            <h1
+                class="mt-6 text-5xl font-black">
+
+                {{ project.title }}
+
+            </h1>
+
+            <p
+                class="mt-6 text-xl text-slate-400 leading-9">
+
+                {{ project.short_description }}
+
+            </p>
+
+        </div>
+
+        <!-- Technologies -->
+
+        <div class="mt-12">
+
+            <h2
+                class="text-2xl font-bold">
+
+                Technologies Used
+
+            </h2>
+
+            <div
+                class="mt-6 bg-slate-900 rounded-2xl border border-slate-800 p-6">
+
+                <p class="text-cyan-400">
+
+                    {{ project.technologies }}
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- Description -->
+
+        <div class="mt-12">
+
+            <h2
+                class="text-2xl font-bold">
+
+                Project Description
+
+            </h2>
+
+            <div
+                class="mt-6 bg-slate-900 rounded-2xl border border-slate-800 p-8">
+
+                <p
+                    class="text-slate-300 leading-9">
+
+                    {{ project.description|linebreaks }}
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- Buttons -->
+
+        <div
+            class="flex flex-wrap gap-4 mt-12">
+
+            {% if project.github_url %}
+
+            <a
+                href="{{ project.github_url }}"
+                target="_blank"
+                class="bg-slate-800 hover:bg-slate-700 px-8 py-4 rounded-xl">
+
+                View GitHub
+
+            </a>
+
+            {% endif %}
+
+            {% if project.live_demo %}
+
+            <a
+                href="{{ project.live_demo }}"
+                target="_blank"
+                class="bg-cyan-400 text-slate-950 px-8 py-4 rounded-xl font-semibold hover:bg-cyan-300">
+
+                Live Demo
+
+            </a>
+
+            {% endif %}
+
+        </div>
+
+    </div>
 
 </section>
 

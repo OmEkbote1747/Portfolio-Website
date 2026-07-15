@@ -6,15 +6,106 @@ Certificates | Om Ekbote
 
 {% block content %}
 
-<section class="max-w-7xl mx-auto px-6 py-20">
+<section class="bg-slate-950 min-h-screen py-20">
 
-    <h1 class="text-5xl font-bold text-cyan-400">
-        My Certificates
-    </h1>
+    <div class="max-w-7xl mx-auto px-6">
 
-    <p class="mt-6 text-slate-300">
-        This page will contain information about me.
-    </p>
+        <div class="text-center">
+
+            <h1 class="text-5xl font-black">
+
+                Certificates
+
+            </h1>
+
+            <p class="mt-4 text-slate-400">
+
+                Professional certifications, online courses, and learning achievements.
+
+            </p>
+
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
+
+            {% for certificate in certificates %}
+
+            <div
+                class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-lg hover:border-cyan-400 transition duration-300">
+
+                {% if certificate.certificate_image %}
+
+                <img
+                    src="{{ certificate.certificate_image.url }}"
+                    alt="{{ certificate.title }}"
+                    class="w-full h-56 object-cover">
+
+                {% else %}
+
+                <div
+                    class="w-full h-56 bg-slate-800 flex items-center justify-center text-slate-500">
+
+                    No Image
+
+                </div>
+
+                {% endif %}
+
+                <div class="p-6">
+
+                    <h2
+                        class="text-2xl font-bold">
+
+                        {{ certificate.title }}
+
+                    </h2>
+
+                    <p
+                        class="mt-2 text-cyan-400">
+
+                        {{ certificate.organization }}
+
+                    </p>
+
+                    <p
+                        class="mt-4 text-slate-400">
+
+                        Issued on:
+
+                        {{ certificate.issue_date }}
+
+                    </p>
+
+                    {% if certificate.credential_url %}
+
+                    <a
+                        href="{{ certificate.credential_url }}"
+                        target="_blank"
+                        class="inline-block mt-6 bg-cyan-400 text-slate-950 px-5 py-3 rounded-lg font-semibold hover:bg-cyan-300 transition">
+
+                        View Credential
+
+                    </a>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+            {% empty %}
+
+            <div class="col-span-full text-center text-slate-400 py-20">
+
+                No certificates added yet.
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
 
 </section>
 

@@ -1,0 +1,194 @@
+<section class="bg-slate-950">
+
+    <div class="max-w-7xl mx-auto px-6 py-24">
+
+        <div class="grid lg:grid-cols-2 gap-20 items-center">
+
+            <!-- LEFT -->
+
+            <div>
+
+                <span
+                    class="inline-flex items-center px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-400/20 text-cyan-400 font-medium">
+
+                    👋 Welcome to my portfolio
+
+                </span>
+
+                <h1
+                    class="mt-8 text-5xl md:text-6xl lg:text-7xl font-black leading-tight">
+
+                    {{ profile.full_name }}
+
+                </h1>
+
+                <h2
+                    class="mt-6 text-2xl text-slate-300 font-semibold">
+
+                    {{ profile.title }}
+
+                </h2>
+
+                <p
+                    class="mt-8 text-lg text-slate-400 leading-8 max-w-2xl">
+
+                    {{ profile.short_bio }}
+
+                </p>
+
+                <!-- Buttons -->
+
+                <div
+                    class="flex flex-wrap gap-5 mt-12">
+
+                    <a
+                        href="{% url 'projects' %}"
+                        class="bg-cyan-400 text-slate-950 px-8 py-4 rounded-xl font-semibold hover:bg-cyan-300 transition">
+
+                        View Projects
+
+                    </a>
+
+                    {% if profile.resume %}
+
+                    <a
+                        href="{{ profile.resume.url }}"
+                        target="_blank"
+                        class="border border-cyan-400 text-cyan-400 px-8 py-4 rounded-xl font-semibold hover:bg-cyan-400 hover:text-slate-950 transition">
+
+                        Download Resume
+
+                    </a>
+
+                    {% endif %}
+
+                </div>
+
+                <!-- Statistics -->
+
+                <div
+                    class="grid grid-cols-3 gap-8 mt-16">
+
+                    <div>
+
+                        <h3
+                            class="text-4xl font-black text-cyan-400">
+
+                            {{ project_count }}
+
+                        </h3>
+
+                        <p
+                            class="text-slate-400 mt-2">
+
+                            Projects
+
+                        </p>
+
+                    </div>
+
+                    <div>
+
+                        <h3
+                            class="text-4xl font-black text-cyan-400">
+
+                            {{ skill_count }}
+
+                        </h3>
+
+                        <p
+                            class="text-slate-400 mt-2">
+
+                            Skills
+
+                        </p>
+
+                    </div>
+
+                    <div>
+
+                        <h3
+                            class="text-4xl font-black text-cyan-400">
+
+                            {{ certificate_count }}
+
+                        </h3>
+
+                        <p
+                            class="text-slate-400 mt-2">
+
+                            Certificates
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- RIGHT -->
+
+            <div class="flex justify-center">
+
+                <div
+                    class="bg-slate-900 border border-slate-800 rounded-3xl p-10 shadow-2xl w-full max-w-sm">
+
+                    {% if profile.profile_image %}
+
+                    <img
+                        src="{{ profile.profile_image.url }}"
+                        alt="{{ profile.full_name }}"
+                        class="w-56 h-56 mx-auto rounded-full object-cover border-4 border-cyan-400">
+
+                    {% endif %}
+
+                    <div class="text-center mt-8">
+
+                        <h3
+                            class="text-3xl font-bold">
+
+                            {{ profile.full_name }}
+
+                        </h3>
+
+                        <p
+                            class="text-cyan-400 mt-2">
+
+                            {{ profile.title }}
+
+                        </p>
+
+                    </div>
+
+                    <div class="border-t border-slate-700 mt-8 pt-6 space-y-4">
+
+                        <p class="text-slate-300">
+
+                            📍 {{ profile.location|default:"Location not added" }}
+
+                        </p>
+
+                        <p class="text-slate-300">
+
+                            ✉ {{ profile.email }}
+
+                        </p>
+
+                        <p class="text-emerald-400 font-medium">
+
+                            ● Available for Internship
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

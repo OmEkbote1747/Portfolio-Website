@@ -11,19 +11,23 @@ class ProjectAdmin(admin.ModelAdmin):
         "title",
         "status",
         "featured",
-        "created"
-    )
-
-    search_fields = ("title",)
-
-    list_filter = (
-        "status",
-        "featured"
+        "created_at",
     )
 
     prepopulated_fields = {
-        "slug": ("title",)
+        "slug": (
+            "title",
+        )
     }
+
+    search_fields = (
+        "title",
+    )
+
+    list_filter = (
+        "status",
+        "featured",
+    )
 
 
 @admin.register(Skill)
@@ -32,11 +36,101 @@ class SkillAdmin(admin.ModelAdmin):
     list_display = (
         "name",
         "category",
-        "percentage"
+        "proficiency",
+        "display_order",
     )
 
+    list_filter = (
+        "category",
+    )
 
-admin.site.register(Education)
-admin.site.register(Experience)
-admin.site.register(Certificate)
-admin.site.register(Contact)
+    ordering = (
+        "display_order",
+    )
+
+    search_fields = (
+        "name",
+    )
+
+@admin.register(Profile)
+class ProfileAdmin(admin.ModelAdmin):
+
+    list_display = (
+        "full_name",
+        "title",
+        "email",
+        "location",
+        "is_active",
+    )
+
+    search_fields = (
+        "full_name",
+        "title",
+    )
+
+    list_filter = (
+        "is_active",
+    )
+
+@admin.register(Journey)
+class JourneyAdmin(admin.ModelAdmin):
+
+    list_display = (
+        "title",
+        "organization",
+        "date",
+        "display_order",
+    )
+
+    ordering = (
+        "date",
+    )
+
+    search_fields = (
+        "title",
+        "organization",
+    )
+
+@admin.register(Certificate)
+class CertificateAdmin(admin.ModelAdmin):
+
+    list_display = (
+        "title",
+        "organization",
+        "issue_date",
+        "display_order",
+    )
+
+    search_fields = (
+        "title",
+        "organization",
+    )
+
+    ordering = (
+        "display_order",
+    )
+
+@admin.register(ContactMessage)
+class ContactMessageAdmin(admin.ModelAdmin):
+
+    list_display = (
+        "name",
+        "email",
+        "subject",
+        "sent_at",
+        "is_read",
+    )
+
+    list_filter = (
+        "is_read",
+    )
+
+    search_fields = (
+        "name",
+        "email",
+        "subject",
+    )
+
+    ordering = (
+        "-sent_at",
+    )

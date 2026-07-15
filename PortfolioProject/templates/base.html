@@ -27,6 +27,23 @@
 <body class="bg-slate-950 text-slate-100 font-[Inter]">
 
     {% include "partials/navbar.html" %}
+    {% if messages %}
+
+<div class="max-w-7xl mx-auto px-6 mt-6">
+
+    {% for message in messages %}
+
+    <div class="bg-emerald-500 text-white rounded-xl px-6 py-4 mb-4">
+
+        {{ message }}
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endif %}
 
     <main>
 

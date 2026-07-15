@@ -6,15 +6,77 @@ Contact | Om Ekbote
 
 {% block content %}
 
-<section class="max-w-7xl mx-auto px-6 py-20">
+<section class="bg-slate-950 min-h-screen py-20">
 
-    <h1 class="text-5xl font-bold text-cyan-400">
-        My Contacts
-    </h1>
+    <div class="max-w-3xl mx-auto px-6">
 
-    <p class="mt-6 text-slate-300">
-        This page will contain information about me.
-    </p>
+        <div class="text-center">
+
+            <h1 class="text-5xl font-black">
+
+                Contact Me
+
+            </h1>
+
+            <p class="mt-4 text-slate-400">
+
+                Have a project idea or just want to connect? Send me a message.
+
+            </p>
+
+        </div>
+
+        <form
+            method="POST"
+            class="bg-slate-900 border border-slate-800 rounded-3xl p-8 mt-16 space-y-6">
+
+            {% csrf_token %}
+
+            {{ form.non_field_errors }}
+
+            <div>
+
+                {{ form.name }}
+
+                {{ form.name.errors }}
+
+            </div>
+
+            <div>
+
+                {{ form.email }}
+
+                {{ form.email.errors }}
+
+            </div>
+
+            <div>
+
+                {{ form.subject }}
+
+                {{ form.subject.errors }}
+
+            </div>
+
+            <div>
+
+                {{ form.message }}
+
+                {{ form.message.errors }}
+
+            </div>
+
+            <button
+                type="submit"
+                class="bg-cyan-400 text-slate-950 font-semibold px-8 py-4 rounded-xl hover:bg-cyan-300 transition">
+
+                Send Message
+
+            </button>
+
+        </form>
+
+    </div>
 
 </section>
 

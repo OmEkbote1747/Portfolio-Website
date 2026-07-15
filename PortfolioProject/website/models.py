@@ -5,7 +5,6 @@ from django.db import models
 class Skill(models.Model):
 
     CATEGORY_CHOICES = [
-        #Why Tuple?
         ("Programming", "Programming"),
         ("Frontend", "Frontend"),
         ("Backend", "Backend"),
@@ -15,117 +14,246 @@ class Skill(models.Model):
     ]
 
     name = models.CharField(max_length=50)
-    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
-    percentage = models.PositiveIntegerField(default=80)
-    icon = models.CharField(
-        max_length=100,
+
+    category = models.CharField(
+        max_length=20,
+        choices=CATEGORY_CHOICES
+    )
+
+    proficiency = models.PositiveSmallIntegerField(
+        help_text="Enter a value between 0 and 100."
+    )
+
+    icon = models.ImageField(
+        upload_to="skills/",
         blank=True,
-        help_text="Iconify or Font Awesome class"
+        null=True
+    )
+
+    display_order = models.PositiveIntegerField(
+        default=1
     )
 
     class Meta:
-        ordering = ["category", "name"]
+        ordering = ["display_order", "name"]
 
     def __str__(self):
         return self.name
 
+
 class Project(models.Model):
 
-    STATUS = [
+    STATUS_CHOICES = [
         ("Completed", "Completed"),
         ("In Progress", "In Progress"),
     ]
 
-    title = models.CharField(max_length=150)
+    title = models.CharField(
+        max_length=150
+    )
 
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(
+        unique=True
+    )
 
-    short_description = models.CharField(max_length=250)
+    short_description = models.CharField(
+        max_length=250
+    )
 
     description = models.TextField()
 
-    image = models.ImageField(upload_to="projects/")
-
-    github = models.URLField(blank=True)
-
-    live_demo = models.URLField(blank=True)
-
-    technologies = models.CharField(
-        max_length=300,
-        help_text="Python, Django, Tailwind"
+    image = models.ImageField(
+        upload_to="projects/",
+        blank=True,
+        null=True
     )
 
-    featured = models.BooleanField(default=False)
+    github_url = models.URLField(
+        blank=True
+    )
+
+    live_demo = models.URLField(
+        blank=True
+    )
+
+    # Want to Add Dynamic technologies instead of simple String
+    technologies = models.CharField(
+        max_length=250
+    )
+
+    featured = models.BooleanField(
+        default=False
+    )
 
     status = models.CharField(
         max_length=20,
-        choices=STATUS,
+        choices=STATUS_CHOICES,
         default="Completed"
     )
 
-    created = models.DateField()
+    created_at = models.DateField()
+
+    class Meta:
+
+        ordering = [
+            "-created_at"
+        ]
 
     def __str__(self):
+
         return self.title
 
-class Education(models.Model):
 
-    institute = models.CharField(max_length=200)
 
-    degree = models.CharField(max_length=150)
-
-    duration = models.CharField(max_length=50)
-
-    cgpa = models.CharField(max_length=20, blank=True)
-
-    description = models.TextField(blank=True)
-
-    def __str__(self):
-        return self.degree
-
-class Experience(models.Model):
-
-    company = models.CharField(max_length=150)
-
-    position = models.CharField(max_length=150)
-
-    duration = models.CharField(max_length=50)
-
-    description = models.TextField()
-
-    technologies = models.CharField(max_length=250)
-
-    def __str__(self):
-        return self.company
 
 class Certificate(models.Model):
 
-    title = models.CharField(max_length=200)
+    title = models.CharField(
+        max_length=200
+    )
 
-    organization = models.CharField(max_length=150)
+    organization = models.CharField(
+        max_length=150
+    )
 
     issue_date = models.DateField()
 
-    credential_url = models.URLField(blank=True)
+    certificate_image = models.ImageField(
+        upload_to="certificates/",
+        blank=True,
+        null=True
+    )
 
-    image = models.ImageField(upload_to="certificates/")
+    credential_url = models.URLField(
+        blank=True
+    )
+
+    display_order = models.PositiveIntegerField(
+        default=1
+    )
+
+    class Meta:
+        ordering = [
+            "display_order",
+            "-issue_date"
+        ]
 
     def __str__(self):
         return self.title
 
-class Contact(models.Model):
+class ContactMessage(models.Model):
 
-    name = models.CharField(max_length=100)
+    name = models.CharField(
+        max_length=100
+    )
 
     email = models.EmailField()
 
-    subject = models.CharField(max_length=150)
+    subject = models.CharField(
+        max_length=200
+    )
 
     message = models.TextField()
 
-    sent_at = models.DateTimeField(auto_now_add=True)
+    sent_at = models.DateTimeField(
+        auto_now_add=True
+    )
 
-    is_read = models.BooleanField(default=False)
+    is_read = models.BooleanField(
+        default=False
+    )
+
+    class Meta:
+
+        ordering = [
+            "-sent_at"
+        ]
 
     def __str__(self):
-        return self.name
+
+        return f"{self.name} - {self.subject}"
+
+
+class Profile(models.Model):
+    full_name = models.CharField(max_length=100)
+    title = models.CharField(max_length=150)
+
+    short_bio = models.TextField()
+
+    profile_image = models.ImageField(
+        upload_to="profile/",
+        blank=True,
+        null=True
+    )
+
+    resume = models.FileField(
+        upload_to="resume/",
+        blank=True,
+        null=True
+    )
+
+    email = models.EmailField()
+
+    phone = models.CharField(
+        max_length=20,
+        blank=True
+    )
+
+    location = models.CharField(
+        max_length=100,
+        blank=True
+    )
+
+    github = models.URLField(
+        blank=True
+    )
+
+    linkedin = models.URLField(
+        blank=True
+    )
+
+    instagram = models.URLField(
+        blank=True
+    )
+
+    about = models.TextField(
+        blank=True,
+        help_text="Detailed About Me section."
+    )
+
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        verbose_name = "Profile"
+        verbose_name_plural = "Profile"
+
+    def __str__(self):
+        return self.full_name
+
+class Journey(models.Model):
+
+    title = models.CharField(
+        max_length=150
+    )
+
+    description = models.TextField()
+
+    organization = models.CharField(
+        max_length=150,
+        blank=True
+    )
+
+    date = models.DateField()
+
+    display_order = models.PositiveIntegerField(
+        default=1
+    )
+
+    class Meta:
+        ordering = [
+            "date",
+            "display_order"
+        ]
+
+    def __str__(self):
+        return self.title

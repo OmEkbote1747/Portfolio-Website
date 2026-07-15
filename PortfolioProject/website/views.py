@@ -1,8 +1,13 @@
 from django.shortcuts import render
+from .models import *
+from django.shortcuts import get_object_or_404
+from .forms import ContactForm
+from django.contrib import messages
 
 
 def home(request):
-    return render(request, "home.html")
+
+    return render(request,"home.html")
 
 
 def about(request):
@@ -10,20 +15,106 @@ def about(request):
 
 
 def skills(request):
-    return render(request, "skills.html")
+
+    skills = Skill.objects.all()
+
+    return render(
+        request,
+        "skills.html",
+        {
+            "skills": skills
+        }
+    )
 
 
 def projects(request):
-    return render(request, "projects.html")
+
+    projects = Project.objects.all()
+
+    return render(
+        request,
+        "projects.html",
+        {
+            "projects": projects
+        }
+    )
+
+def project_detail(request, slug):
+
+    project = get_object_or_404(
+        Project,
+        slug=slug
+    )
+
+    return render(
+        request,
+        "project_detail.html",
+        {
+            "project": project
+        }
+    )
 
 
 def journey(request):
-    return render(request, "journey.html")
+
+    journey_items = Journey.objects.all()
+
+    return render(
+        request,
+        "journey.html",
+        {
+            "journey_items": journey_items
+        }
+    )
 
 
 def certificates(request):
-    return render(request, "certificates.html")
+
+    certificates = Certificate.objects.all()
+
+    return render(
+        request,
+        "certificates.html",
+        {
+            "certificates": certificates
+        }
+    )
 
 
 def contact(request):
-    return render(request, "contact.html")
+
+    if request.method == "POST":
+
+        form = ContactForm(request.POST)
+
+        if form.is_valid():
+
+            form.save()
+
+            messages.success(
+
+                request,
+
+                "Your message has been sent successfully."
+
+            )
+
+            form = ContactForm()
+
+    else:
+
+        form = ContactForm()
+
+    return render(
+
+        request,
+
+        "contact.html",
+
+        {
+
+            "form": form
+
+        }
+
+    )

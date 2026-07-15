@@ -1,31 +1,109 @@
-<nav class="border-b border-slate-800">
+<nav class="sticky top-0 z-50 border-b border-slate-800 bg-slate-950/90 backdrop-blur-lg">
 
     <div class="max-w-7xl mx-auto px-6">
 
-        <div class="flex flex-col md:flex-row md:justify-between md:items-center py-6">
+        <div class="flex flex-col lg:flex-row items-center justify-between py-5">
+
+            <!-- Logo -->
 
             <a href="{% url 'home' %}"
-               class="text-3xl font-extrabold text-cyan-400">
+               class="text-3xl font-black tracking-wide">
 
-                Om.
+                <span class="text-white">
+
+                    Om
+
+                </span>
+
+                <span class="text-cyan-400">
+
+                    .
+
+                </span>
 
             </a>
 
-            <ul class="flex flex-col md:flex-row gap-6 mt-6 md:mt-0">
+            <!-- Navigation -->
 
-                <li><a href="{% url 'home' %}" class="hover:text-cyan-400 transition">Home</a></li>
+            <ul class="flex flex-col lg:flex-row gap-7 mt-6 lg:mt-0 items-center">
 
-                <li><a href="{% url 'about' %}" class="hover:text-cyan-400 transition">About</a></li>
+                <li>
 
-                <li><a href="{% url 'skills' %}" class="hover:text-cyan-400 transition">Skills</a></li>
+                    <a href="{% url 'home' %}"
+                       class="text-slate-300 hover:text-cyan-400 transition duration-300">
 
-                <li><a href="{% url 'projects' %}" class="hover:text-cyan-400 transition">Projects</a></li>
+                        Home
 
-                <li><a href="{% url 'journey' %}" class="hover:text-cyan-400 transition">Journey</a></li>
+                    </a>
 
-                <li><a href="{% url 'certificates' %}" class="hover:text-cyan-400 transition">Certificates</a></li>
+                </li>
 
-                <li><a href="{% url 'contact' %}" class="hover:text-cyan-400 transition">Contact</a></li>
+                <li>
+
+                    <a href="{% url 'about' %}"
+                       class="text-slate-300 hover:text-cyan-400 transition duration-300">
+
+                        About
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="{% url 'skills' %}"
+                       class="text-slate-300 hover:text-cyan-400 transition duration-300">
+
+                        Skills
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="{% url 'projects' %}"
+                       class="text-slate-300 hover:text-cyan-400 transition duration-300">
+
+                        Projects
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="{% url 'journey' %}"
+                       class="text-slate-300 hover:text-cyan-400 transition duration-300">
+
+                        Journey
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="{% url 'certificates' %}"
+                       class="text-slate-300 hover:text-cyan-400 transition duration-300">
+
+                        Certificates
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="{% url 'contact' %}"
+                       class="text-slate-300 hover:text-cyan-400 transition duration-300">
+
+                        Contact
+
+                    </a>
+
+                </li>
+
 
             </ul>
 
