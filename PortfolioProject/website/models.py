@@ -103,9 +103,6 @@ class Project(models.Model):
 
         return self.title
 
-
-
-
 class Certificate(models.Model):
 
     title = models.CharField(
@@ -172,7 +169,6 @@ class ContactMessage(models.Model):
     def __str__(self):
 
         return f"{self.name} - {self.subject}"
-
 
 class Profile(models.Model):
     full_name = models.CharField(max_length=100)
